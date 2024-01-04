@@ -1,0 +1,27 @@
+## 7b5deec6-a7ce-7cb3-65a4-5ce4713dadd4
+
+**Name** (not equal to External Key)**:** HK_MasterDE_Refresh_Filters
+
+**Description:** n/a
+
+**Folder:** my automations/
+
+**Started by:** Schedule
+
+**Status:** Scheduled
+
+**Schedule:**
+
+* Start: 2020-04-02 16:00:00 +08:00
+* End: 2079-06-06 00:00:00 +08:00
+* Timezone: China Standard Time
+* Recurrance: every hour until end date
+
+**Notifications:**
+
+* Complete: sfmcautomations@msd.com
+* Error: sfmcautomations@msd.com
+
+| Step 1<br>_<small>-</small>_ |
+| --- |
+| _1.1: filter_<br>Digital_Identity_Hub_Profiles_Filter |

@@ -1,0 +1,25 @@
+## c89be513-eebe-b9ad-f0d2-ee086c3da376
+
+**Name** (not equal to External Key)**:** HCPPrimary_Data_Load_DIHCOH_Supplement[MSQ]
+
+**Description:** n/a
+
+**Folder:** my automations/DMR/
+
+**Started by:** Schedule
+
+**Status:** Scheduled
+
+**Schedule:**
+
+* Start: 2022-09-17 00:00:00 +01:00
+* End: 2079-06-06 00:00:00 +01:00
+* Timezone: Central Europe Standard Time
+* Recurrance: every hour until end date
+
+**Notifications:** _none_
+
+
+| Step 1<br>_<small>-</small>_ | Step 2<br>_<small>-</small>_ | Step 3<br>_<small>-</small>_ | Step 4<br>_<small>-</small>_ |
+| --- | --- | --- | --- |
+| _1.1: query_<br>DIH-HCPPrimaryDEDataPopulation | _2.1: query_<br>ConsentHub-HCPPrimaryDEDataPopulation | _3.1: query_<br>NoPrimaryinCOH-HCPPrimaryDEDataPopulation | _4.1: query_<br>Token-HCPPrimaryDEDataPopulation |

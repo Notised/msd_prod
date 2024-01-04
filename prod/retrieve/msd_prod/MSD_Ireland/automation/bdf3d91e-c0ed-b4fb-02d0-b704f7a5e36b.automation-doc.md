@@ -1,0 +1,27 @@
+## bdf3d91e-c0ed-b4fb-02d0-b704f7a5e36b
+
+**Name** (not equal to External Key)**:** IE_MasterDE_Refresh_Filters
+
+**Description:** n/a
+
+**Folder:** my automations/
+
+**Started by:** Schedule
+
+**Status:** Scheduled
+
+**Schedule:**
+
+* Start: 2020-06-25 11:00:00 +01:00
+* End: 2079-06-06 00:00:00 +01:00
+* Timezone: Central Europe Standard Time
+* Recurrance: every hour until end date
+
+**Notifications:**
+
+* Complete: sfmcautomations@msd.com
+* Error: sfmcautomations@msd.com
+
+| Step 1<br>_<small>-</small>_ |
+| --- |
+| _1.1: filter_<br>Digital_Identity_Hub_Profiles_Filter |

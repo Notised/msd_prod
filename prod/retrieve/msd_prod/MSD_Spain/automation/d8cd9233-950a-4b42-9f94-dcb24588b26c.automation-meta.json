@@ -1,0 +1,257 @@
+{
+    "name": "ATM_core_MAS",
+    "description": "Lead scoring model with new value rules.",
+    "key": "d8cd9233-950a-4b42-9f94-dcb24588b26c",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2019-10-22T02:00:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T080000;INTERVAL=1",
+        "timezoneName": "Romance Standard Time"
+    },
+    "steps": [
+        {
+            "name": "DVSent LEFT JOIN DVBounces\n",
+            "activities": [
+                {
+                    "name": "01_SQL_Scoring_step_DVSent_DVBounces_v2",
+                    "r__type": "query"
+                },
+                {
+                    "name": "QRY_MASTER_UUID_HCP_DIH_S1",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "01_Bis_SQL_Scoring_DV_Bounce",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Assign 0 as a default value points for all sends and add new column nSent",
+            "activities": [
+                {
+                    "name": "02_SQL_Scoring_nSent_value_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "-100 as a default value points for all bounces types of bounces and add it in a new column named nBounce",
+            "activities": [
+                {
+                    "name": "03_SQL_Scoring_nBounces_value_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "DV Open to add UniqueOpen and OpenDate data.",
+            "activities": [
+                {
+                    "name": "04_SQL_Scoring_DVOpen_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Assign 2 as a default value points for all opens and add new column nOpen",
+            "activities": [
+                {
+                    "name": "05_SQL_Scoring_nOpen_value_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "DV Click to add UniqueClick and ClickDate data",
+            "activities": [
+                {
+                    "name": "06_SQL_Scoring_DVClick_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Assign a range of points as a default value points for all clicks and add new column, nClick",
+            "activities": [
+                {
+                    "name": "07_SQL_Scoring_nClicks_value_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "DV Unsub to add Unsubscribe and UnsubscribeDate",
+            "activities": [
+                {
+                    "name": "08_SQL_Scoring_DVUnsubscribe_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Set 0 points for all unsub users with false or true in unsubscribe field",
+            "activities": [
+                {
+                    "name": "09_SQL_Scoring_Unsubscribe_value_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "14_SQL_Scoring_sum_values_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "15_SQL_lastLogin_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "16_SQL_nlastLogin_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Return Path",
+            "activities": [
+                {
+                    "name": "16_BIS_SQL_rp_avg_dwell_V2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Return Path",
+            "activities": [
+                {
+                    "name": "16_BIS_QRY_navg_dwell_V2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "AE",
+            "activities": [
+                {
+                    "name": "16_bis_approved_email_activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "AE",
+            "activities": [
+                {
+                    "name": "16_bis_naprroved_email_activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "AE",
+            "activities": [
+                {
+                    "name": "16_bis_sum_napproved_email",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "11_SQL_Scoring_nStatusEventRegistered_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "17_SQL_TotalSum_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "18_SQL_suscriber_primary_key_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "19_SQL_allsubscriber_email_v2",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "20_SQL_contact_data_v2",
+                    "r__type": "query"
+                }
+            ]
+        }
+    ],
+    "notifications": [
+        {
+            "email": [
+                "cristina.campillo.nme@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "jose.maria.esteban@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "raquel.canibano@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "gregorio.lopez@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/2.Business/2_SEGMENT/MAS/CORE"
+}

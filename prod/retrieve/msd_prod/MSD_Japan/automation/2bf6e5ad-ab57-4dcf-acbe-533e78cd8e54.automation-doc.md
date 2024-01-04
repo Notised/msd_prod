@@ -1,0 +1,25 @@
+## 2bf6e5ad-ab57-4dcf-acbe-533e78cd8e54
+
+**Name** (not equal to External Key)**:** MoA_updateEngagement
+
+**Description:** n/a
+
+**Folder:** my automations/Molnupiravir Campaign/
+
+**Started by:** Schedule
+
+**Status:** PausedSchedule
+
+**Schedule:**
+
+* Start: 2021-08-10 12:00:00 +09:00
+* End: 2079-06-06 00:00:00 +09:00
+* Timezone: Tokyo Standard Time
+* Recurrance: every day until end date
+
+**Notifications:** _none_
+
+
+| Step 1<br>_<small>Update MDMID</small>_ | Step 2<br>_<small>Update LP1_LP2Accesses</small>_ | Step 3<br>_<small>Update LP3Accesses</small>_ | Step 4<br>_<small>Update LP4Accesses</small>_ | Step 5<br>_<small>Update Email1Open</small>_ | Step 6<br>_<small>Update Email2Open</small>_ | Step 7<br>_<small>Update Email3Open</small>_ | Step 8<br>_<small>Update Email4Open</small>_ |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| _1.1: query_<br>MoA_updateMDMID | _2.1: query_<br>MoA_updateLPAccess_1or2 | _3.1: query_<br>MoA_updateLPAccess_3 | _4.1: query_<br>MoA_updateLPAccess_4 | _5.1: query_<br>MoA_updateEmail1Open | _6.1: query_<br>MoA_updateEmail2Open | _7.1: query_<br>MoA_updateEmail3Open | _8.1: query_<br>MoA_updateEmail4Open |

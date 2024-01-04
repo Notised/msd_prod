@@ -1,0 +1,29 @@
+## 4ac27343-b17e-4c4c-babe-f9b6bfb0fa36
+
+**Name** (not equal to External Key)**:** Automation_Custom_Veeva_Data_Views
+
+**Description:** n/a
+
+**Folder:** my automations/Veeva Data/CRM Interactions 2.0/
+
+**Started by:** Schedule
+
+**Status:** Scheduled
+
+**Schedule:**
+
+* Start: 2021-11-24 07:30:00 +00:00
+* End: 2079-06-06 00:00:00 +00:00
+* Timezone: GMT Standard Time
+* Recurrance: every 2 hours until end date
+
+**Notifications:**
+
+* Error: irina.honrado@merck.com
+
+| Step 1<br>_<small>-</small>_ | Step 2<br>_<small>SQL Call</small>_ | Step 3<br>_<small>SQL Call</small>_ | Step 4<br>_<small>SQL call</small>_ | Step 5<br>_<small>-</small>_ | Step 6<br>_<small>-</small>_ | Step 7<br>_<small>-</small>_ |
+| --- | --- | --- | --- | --- | --- | --- |
+| _1.1: query_<br>Approved Document | _2.1: query_<br>Call_Step1_Account | _3.1: query_<br>Call_Step3_Account_Call_STG | _4.1: query_<br>Call_Step4_Account_Call_Detail_STG | _5.1: query_<br>Call_AT_FINAL | _6.1: query_<br>custom_assigned_rep | _7.1: query_<br>custom_Multichannel_consent |
+| _1.2: query_<br>Product Metrics | _2.2: query_<br>Call_Step2_Call_STG | _3.2: query_<br>cust_mccp_AT | - | _5.2: query_<br>Sample Order | _6.2: query_<br>custom_last_SurveyResponses | - |
+| _1.3: query_<br>Survey | - | - | - | _5.3: query_<br>CLM Call | - | - |
+| _1.4: query_<br>User | - | - | - | - | - | - |

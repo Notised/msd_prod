@@ -1,0 +1,59 @@
+{
+    "name": "ATM_Export_envio_manual_12_octubre",
+    "description": "",
+    "key": "e5182b79-4718-d536-48e4-090be6adbd44",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2020-04-03T08:00:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T080000;INTERVAL=1",
+        "timezoneName": "Romance Standard Time"
+    },
+    "steps": [
+        {
+            "name": "It checks the users in Cloud Page DE and filter only the ones that have registered in the last 24 hours.",
+            "activities": [
+                {
+                    "name": "QRY_Intermediate_envio_manual_12_octubre",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "It exports data from STG Data Extension and generate a CSV file.",
+            "activities": [
+                {
+                    "name": "ES_Export_envio_manual_12_octubre_activity",
+                    "r__type": "dataExtract"
+                }
+            ]
+        },
+        {
+            "name": "It picks up the CSV and upload to Export folder in the enhanced FTP.",
+            "activities": [
+                {
+                    "name": "ES_File_Transfer_envio_manual_12_octubre_activity",
+                    "r__type": "fileTransfer"
+                }
+            ]
+        }
+    ],
+    "notifications": [
+        {
+            "email": [
+                "daniel.bejarano.hernandez@merck.com"
+            ],
+            "message": "",
+            "type": "Complete"
+        },
+        {
+            "email": [
+                "daniel.bejarano.hernandez@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/2.Business/Tests/Manual_12_Octubre"
+}

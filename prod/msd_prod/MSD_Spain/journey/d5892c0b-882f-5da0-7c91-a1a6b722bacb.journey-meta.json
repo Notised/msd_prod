@@ -1,0 +1,639 @@
+{
+    "key": "d5892c0b-882f-5da0-7c91-a1a6b722bacb",
+    "name": "J_Recoverable_impact_01",
+    "lastPublishedDate": "0001-01-01T00:00:00",
+    "description": "Used to try to recover very low engagement contacts. Contacts with 0 and -1 in Total_Score field.",
+    "version": 4,
+    "workflowApiVersion": 1,
+    "createdDate": "2020-10-06T02:28:27.467",
+    "modifiedDate": "2020-10-06T02:28:27.467",
+    "activities": [
+        {
+            "id": "90c1b772-b0dc-47f3-9ff4-ea13f6db8cc9",
+            "key": "MULTICRITERIADECISIONV2-1",
+            "name": "Recovery_Impact Split",
+            "description": "",
+            "type": "MULTICRITERIADECISION",
+            "outcomes": [
+                {
+                    "key": "default_path_1",
+                    "next": "EMAILV2-1",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Recovery Impact null or false",
+                        "skipI18n": true,
+                        "isLabelFromConversion": false,
+                        "criteriaDescription": "Recovery_Impact is null  OR Recovery_Impact is False",
+                        "invalid": false
+                    }
+                },
+                {
+                    "key": "remainder_path",
+                    "next": "WAITBYDURATION-7",
+                    "arguments": {},
+                    "metaData": {
+                        "label": "Remainder",
+                        "skipI18n": null,
+                        "isLabelFromConversion": false,
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "filterResult": "default_path_1={{Contact.FilterId.5ae339eb-219e-47d8-8bd7-debc354774b9}},remainder_path=False"
+            },
+            "configurationArguments": {
+                "schemaVersionId": 252,
+                "criteria": {
+                    "default_path_1": "<FilterDefinition><ConditionSet Operator=\"OR\" ConditionSetName=\"Individual Filter Grouping\"><Condition IsEphemeralAttribute=\"true\" Key=\"Event.DEAudience-e654d3c0-9f06-b5dc-91ec-77ec6696aa3e.Recovery_Impact\" Operator=\"IsNull\" UiMetaData=\"{}\"><Value><![CDATA[]]></Value></Condition><Condition IsEphemeralAttribute=\"true\" Key=\"Event.DEAudience-e654d3c0-9f06-b5dc-91ec-77ec6696aa3e.Recovery_Impact\" Operator=\"Is\" UiMetaData=\"{}\"><Value><![CDATA[false]]></Value></Condition></ConditionSet></FilterDefinition>"
+                }
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "actualChoice": {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "id": "0e84ee87-ce48-44d1-bddf-05206e2c79c6",
+            "key": "EMAILV2-1",
+            "name": "Recoverable_impact_01",
+            "description": "",
+            "type": "EMAILV2",
+            "outcomes": [
+                {
+                    "key": "2188d848-6f7e-49dd-9fdb-9190a05de67f",
+                    "next": "UPDATECONTACTDATAV2-1",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "emailSubjectDataBound": "%%Janrain First Name%% ¿Son estas sus preferencias?",
+                "contactId": "{{Contact.Id}}",
+                "contactKey": "{{Contact.Key}}",
+                "emailAddress": "{{InteractionDefaults.Email}}",
+                "sourceCustomObjectId": "{{Contact.AddressInfo.Email.SourceCustomObjectId}}",
+                "sourceCustomObjectKey": "{{Contact.AddressInfo.Email.SourceCustomObjectKey}}",
+                "fieldType": "{{Contact.AddressInfo.Email.FieldType}}",
+                "eventData": "{{Event}}",
+                "obfuscationProperties": "{{InteractionDefaults.Email.ObfuscationProperties}}",
+                "customObjectKey": "",
+                "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+            },
+            "configurationArguments": {
+                "triggeredSend": {
+                    "autoAddSubscribers": true,
+                    "autoUpdateSubscribers": true,
+                    "bccEmail": "",
+                    "categoryId": 350276,
+                    "ccEmail": "",
+                    "created": {
+                        "name": "ES Daniel Bejarano",
+                        "date": "2020-09-30T20:18:00Z"
+                    },
+                    "description": "Recoverable_impact_01 - 1a2b26cd8f1d4b9fa60651cc483578d5",
+                    "domainExclusions": [],
+                    "dynamicEmailSubject": "%%Janrain First Name%% ¿Son estas sus preferencias?",
+                    "emailId": 99819,
+                    "emailSubject": "%%Janrain First Name%% ¿Son estas sus preferencias?",
+                    "exclusionFilter": "",
+                    "id": "22dd02e8-1603-eb11-a2ee-1402ec938a51",
+                    "isSalesforceTracking": true,
+                    "isMultipart": true,
+                    "isSendLogging": true,
+                    "isStoppedOnJobError": false,
+                    "key": "86838",
+                    "keyword": "",
+                    "modified": {
+                        "name": "ES Daniel Bejarano",
+                        "date": "2020-09-30T20:18:00Z"
+                    },
+                    "name": "Recoverable_impact_01 - 13080cef1d1d459fb6606d295ccab01b",
+                    "preHeader": "¿Sigue ahí?",
+                    "priority": 4,
+                    "replyToAddress": "",
+                    "replyToDisplayName": "",
+                    "sendClassificationId": "13e5c2b0-dbbf-e811-a2c3-1402ec938a89",
+                    "suppressTracking": false,
+                    "triggeredSendStatus": "Inactive",
+                    "version": 2,
+                    "deliveryProfileId": "12e5c2b0-dbbf-e811-a2c3-1402ec938a89",
+                    "senderProfileId": "15e5c2b0-dbbf-e811-a2c3-1402ec938a89",
+                    "isTrackingClicks": true,
+                    "publicationListId": 4365,
+                    "throttleLimit": 0,
+                    "campaigns": [],
+                    "suppressionLists": []
+                },
+                "triggeredSendKey": "86843",
+                "isModified": false,
+                "isSimulation": false,
+                "googleAnalyticsCampaignName": "",
+                "useLLTS": false,
+                "applicationExtensionKey": "jb-email-activity"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "sections": {}
+            },
+            "schema": {
+                "arguments": {
+                    "requestID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "messageKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "emailSubjectDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "emailAddress": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "sourceCustomObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "fieldType": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "eventData": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "obfuscationProperties": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "customObjectKey": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "id": "bfd633de-53e0-49ad-ad02-57faad6119b5",
+            "key": "UPDATECONTACTDATAV2-1",
+            "name": "Recov_impact True",
+            "description": "",
+            "type": "UPDATECONTACTDATA",
+            "outcomes": [
+                {
+                    "key": "99033c37-1a8a-456f-9056-63d80c8571bd",
+                    "next": "WAITBYDURATION-6",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "activityData": {
+                    "updateContactFields": [
+                        {
+                            "dataExtensionId": "e37d1f09-629f-ea11-a2ea-1402ec938a8d",
+                            "field": "991fa59f-9408-4511-bb75-49dc3b623076",
+                            "value": 1
+                        },
+                        {
+                            "dataExtensionId": "e37d1f09-629f-ea11-a2ea-1402ec938a8d",
+                            "field": "bf01fdf0-faac-4557-8c69-6def0c16205d",
+                            "value": "{{DateTime.Now}}"
+                        }
+                    ]
+                },
+                "contactKey": "{{Context.ContactKey}}"
+            },
+            "configurationArguments": {
+                "isActivityBatchValidated": true
+            },
+            "metaData": {
+                "isConfigured": true
+            },
+            "schema": {
+                "arguments": {
+                    "activityData": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "id": "8ffdc31d-ec68-48b3-878e-a91139d99c49",
+            "key": "WAITBYDURATION-7",
+            "name": "2 hours",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "c71f3acd-ee26-45a2-af00-1a7702e88d99",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitDefinitionId": "3fc7f316-55c1-43ed-9614-da05967bf777",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
+            "configurationArguments": {
+                "waitDuration": 2,
+                "waitUnit": "HOURS",
+                "specifiedTime": "00:00",
+                "timeZone": "Central Europe Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "id": "86d15494-3911-41a1-886d-cb09ee2827b7",
+            "key": "WAITBYDURATION-6",
+            "name": "1 day",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "2a39dab8-87f3-4eca-bada-2153b835ac0f",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "waitEndDateAttributeDataBound": "",
+                "waitDefinitionId": "aa1c3c0a-5b17-4e64-902b-566ca474ea09",
+                "waitForEventId": "",
+                "executionMode": "{{Context.ExecutionMode}}",
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "waitQueueId": "{{Context.WaitQueueId}}"
+            },
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "DAYS",
+                "specifiedTime": "00:00",
+                "timeZone": "Central Europe Standard Time",
+                "description": "",
+                "waitEndDateAttributeExpression": "",
+                "specificDate": "",
+                "waitForEventKey": ""
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": "",
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "TEST_J_Recoverable_first_impact",
+            "description": "Total_Score greater than or equal -1 AND Total_Score less than or equal 0",
+            "type": "EmailAudience",
+            "outcomes": [],
+            "arguments": {
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "{{Contact.FilterId.f9e56196-3175-4b95-86ec-11d484a889ff}}"
+            },
+            "configurationArguments": {
+                "filterDefinitionId": "f9e56196-3175-4b95-86ec-11d484a889ff",
+                "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"Automated_Report_Recovered_Users.Total_Score\" Operator=\"GreaterThanOrEqual\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;46dbcbea-0aff-ea11-a2ee-1402ec938a51&quot;}\"><Value><![CDATA[-1]]></Value></Condition><Condition Key=\"Automated_Report_Recovered_Users.Total_Score\" Operator=\"LessThanOrEqual\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;46dbcbea-0aff-ea11-a2ee-1402ec938a51&quot;}\"><Value><![CDATA[0]]></Value></Condition></ConditionSet></FilterDefinition>",
+                "schemaVersionId": 455
+            },
+            "metaData": {
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000",
+                "eventDefinitionKey": "DEAudience-e654d3c0-9f06-b5dc-91ec-77ec6696aa3e",
+                "chainType": "None",
+                "configurationRequired": false,
+                "iconUrl": "/images/icon-data-extension.svg",
+                "title": "Data Extension",
+                "category": "Audience",
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json"
+            }
+        }
+    ],
+    "goals": [
+        {
+            "id": "0bf74179-d906-4011-a5af-24a642552dd1",
+            "key": "GOAL",
+            "name": "GOAL",
+            "description": "increase total_score over 0 points",
+            "type": "Event",
+            "outcomes": [],
+            "arguments": {
+                "startActivityKey": "{{Context.StartActivityKey}}",
+                "dequeueReason": "{{Context.DequeueReason}}",
+                "lastExecutedActivityKey": "{{Context.LastExecutedActivityKey}}",
+                "filterResult": "{{Contact.FilterId.09a552f4-de01-4e37-ad11-a330b725328a}}"
+            },
+            "configurationArguments": {
+                "filterDefinitionId": "09a552f4-de01-4e37-ad11-a330b725328a",
+                "criteria": "<FilterDefinition><ConditionSet Operator=\"AND\" ConditionSetName=\"Individual Filter Grouping\"><Condition Key=\"LS_20_scoring_contact_V2_DE.Total_Score\" Operator=\"GreaterThan\" UiMetaData=\"{&quot;groupToSetRelationshipId&quot;:&quot;d592309a-8d07-ea11-a2db-1402ec938a50&quot;}\"><Value><![CDATA[0]]></Value></Condition></ConditionSet></FilterDefinition>",
+                "schemaVersionId": 455
+            },
+            "metaData": {
+                "isExitCriteria": false,
+                "conversionUnit": "percentage",
+                "conversionValue": "5",
+                "configurationDescription": "Total_Score greater than 0",
+                "chainType": "none",
+                "configurationRequired": false,
+                "iconUrl": "",
+                "title": ""
+            },
+            "schema": {
+                "arguments": {
+                    "conditionOutcome": {
+                        "dataType": "Boolean",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "dequeueReason": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "lastExecutedActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "filterResult": {
+                        "dataType": "Boolean",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": true,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "MultipleEntries",
+    "definitionType": "Multistep",
+    "channel": "",
+    "defaults": {
+        "email": [
+            "{{Event.DEAudience-e654d3c0-9f06-b5dc-91ec-77ec6696aa3e.\"email\"}}"
+        ],
+        "properties": {
+            "analyticsTracking": {
+                "enabled": true,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {
+        "hasCopiedActivity": true
+    },
+    "executionMode": "Production",
+    "status": "Draft",
+    "scheduledStatus": "Draft",
+    "r__folder_Path": "my journeys/Campaigns/0_ALL - Reactivation/2020_Recoverables"
+}

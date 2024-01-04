@@ -1,0 +1,26 @@
+## Refresh Shared Sources_AU
+
+**Description:** Filter data from prepared Veeva data extension based on country code to shared data extension.
+
+**Folder:** my automations/Veeva Data/
+
+**Started by:** Schedule
+
+**Status:** Scheduled
+
+**Schedule:**
+
+* Start: 2019-07-24 12:00:00 +08:00
+* End: 2079-06-06 00:00:00 +08:00
+* Timezone: Singapore Standard Time
+* Recurrance: every 3 hours until end date
+
+**Notifications:**
+
+* Complete: sfmcautomations@msd.com
+* Error: sfmcautomations@msd.com
+
+| Step 1<br>_<small>-</small>_ | Step 2<br>_<small>-</small>_ | Step 3<br>_<small>-</small>_ | Step 4<br>_<small>-</small>_ | Step 5<br>_<small>-</small>_ | Step 6<br>_<small>-</small>_ |
+| --- | --- | --- | --- | --- | --- |
+| _1.1: filter_<br>Approved_Documents_AU | _2.1: filter_<br>Call_Data_AU | _3.1: filter_<br>Product_Metrics_AU | _4.1: filter_<br>Survey_AU | _5.1: filter_<br>User_AU | _6.1: filter_<br>Sample_Order_AU |
+| _1.2: filter_<br>CLM_New_Call_AU | - | - | - | - | - |

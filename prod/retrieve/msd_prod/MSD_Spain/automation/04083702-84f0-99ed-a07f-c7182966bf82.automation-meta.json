@@ -1,0 +1,111 @@
+{
+    "name": "ATM_Recovery_Management",
+    "description": "This automation manages the users that entry in 'Recovery' journeys and how they behave",
+    "key": "04083702-84f0-99ed-a07f-c7182966bf82",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2020-11-01T03:30:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T080000;INTERVAL=1",
+        "timezoneName": "Central Europe Standard Time"
+    },
+    "steps": [
+        {
+            "name": "This QRY loads every user in DIH  impacted by a recoverable journey",
+            "activities": [
+                {
+                    "name": "QRY_NRM_DIH_Data",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "In this step scoring data is added to previous DIH loaded date",
+            "activities": [
+                {
+                    "name": "QRY_NRM_LS20_Data",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "This QRY loads every user with a Total_Score of 0 or -1, including so these users not impacted previously by a recoverable journey",
+            "activities": [
+                {
+                    "name": "QRY_NRM_LS20_NotImpacted",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "This QRY flag as recovered users those who have opened or clicked in a recoverable email",
+            "activities": [
+                {
+                    "name": "QRY_NRM_Recovered_Users",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "In this step new score is applied to recovered users with a negative score",
+            "activities": [
+                {
+                    "name": "QRY_NRM_Score_Recov_DE",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "In this step we upload LS20 score and recovery information",
+            "activities": [
+                {
+                    "name": "QRY_NRM_LS20_Update",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "This QRY execute the filter of daily impactable users",
+            "activities": [
+                {
+                    "name": "QRY_NRM_Daily_Recoverable_Users",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "21_SQL_Total_Score_Attribute",
+                    "r__type": "query"
+                }
+            ]
+        }
+    ],
+    "notifications": [
+        {
+            "email": [
+                "jose.maria.esteban@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "raquel.canibano@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "gregorio.lopez@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/2.Business/2_SEGMENT/MAS/CORE"
+}

@@ -1,0 +1,91 @@
+{
+    "name": "ATM_backup_MAS",
+    "description": "Generates a backup file from LS_20 DE and upload it to a FTP. Monthly.",
+    "key": "4ef51331-bae0-4848-93bc-1394abe6450c",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2020-12-05T12:00:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=MONTHLY;UNTIL=20790606T080000;INTERVAL=1;BYMONTHDAY=5",
+        "timezoneName": "Romance Standard Time"
+    },
+    "steps": [
+        {
+            "name": "It adds Last_Total_Score value to LS_20 DE ir order to have last month value",
+            "activities": [
+                {
+                    "name": "QRY_last_total_score_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Makes a CSV of LS20 data extension",
+            "activities": [
+                {
+                    "name": "ES_Export_report_MASS_engagement_activity",
+                    "r__type": "dataExtract"
+                }
+            ]
+        },
+        {
+            "name": "Move CSV file to Export folder in FTP",
+            "activities": [
+                {
+                    "name": "ES_File_Transfer_Report_MASS_engagement_DE",
+                    "r__type": "fileTransfer"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "Data_export_atm_email",
+                    "r__type": "emailSend"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "activities": [
+                {
+                    "name": "QRY_Monthly_BackUp_LS20",
+                    "r__type": "query"
+                }
+            ]
+        }
+    ],
+    "notifications": [
+        {
+            "email": [
+                "jose.maria.esteban@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "cristina.campillo.nme@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "raquel.canibano@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "gregorio.lopez@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/2.Business/2_SEGMENT/MAS/CORE"
+}

@@ -1,0 +1,27 @@
+## 89c6bb91-aa0a-4669-b6df-1fb2abc1dca2
+
+**Name** (not equal to External Key)**:** LB_ Traditionalist_PR_Automation_8
+
+**Description:** n/a
+
+**Folder:** my automations/MOTF-Lebanon/Impact1-5yrupdate/PR Phase/
+
+**Started by:** Schedule
+
+**Status:** Ready
+
+**Schedule:**
+
+* Start: 2023-12-07 11:00:00 +02:00
+* End: 2023-12-07 11:00:00 +02:00
+* Timezone: Middle East Standard Time
+* Recurrance: run only once
+
+**Notifications:**
+
+* Complete: aditi.bagul@msd.com
+* Error: aditi.bagul@msd.com
+
+| Step 1<br>_<small>-</small>_ |
+| --- |
+| _1.1: query_<br>LB_TR_PR_Open_Approved Document_Exclusion_Query_8 |

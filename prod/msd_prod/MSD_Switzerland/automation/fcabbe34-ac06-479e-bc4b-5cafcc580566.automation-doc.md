@@ -1,0 +1,20 @@
+## fcabbe34-ac06-479e-bc4b-5cafcc580566
+
+**Name** (not equal to External Key)**:** Template_VeevaC7_EmailFollowup_NoCallLastXMonths (copy before use)
+
+**Description:** n/a
+
+**Folder:** my automations/Veeva Data/Use Cases/Templates (COPY BEFORE USE)/
+
+**Started by:** Not defined
+
+**Status:** Ready
+
+**Schedule:** Not defined
+
+**Notifications:** _none_
+
+
+| Step 1<br>_<small>-</small>_ |
+| --- |
+| _1.1: query_<br>COUNTRY_SQL_UC7_EmailFollowup_NoCallLastXMonths (copybeforeuse) |

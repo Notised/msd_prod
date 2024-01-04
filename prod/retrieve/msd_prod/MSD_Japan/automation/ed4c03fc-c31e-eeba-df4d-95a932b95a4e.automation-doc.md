@@ -1,0 +1,25 @@
+## ed4c03fc-c31e-eeba-df4d-95a932b95a4e
+
+**Name** (not equal to External Key)**:** JP_MA_HQEM_MR_SEND_BOUNCE_15
+
+**Description:** n/a
+
+**Folder:** my automations/PROD/HQEM/Ver3/Bounce/
+
+**Started by:** Schedule
+
+**Status:** PausedSchedule
+
+**Schedule:**
+
+* Start: 2024-01-08 08:15:00 +09:00
+* End: 2079-06-06 00:00:00 +09:00
+* Timezone: Tokyo Standard Time
+* Recurrance: every hour until end date
+
+**Notifications:** _none_
+
+
+| Step 1<br>_<small>-</small>_ | Step 2<br>_<small>-</small>_ |
+| --- | --- |
+| _1.1: query_<br>JP_MA_HQEM_MR_SEND_BOUNCE | _2.1: journeyEntry_<br> JP_MA_HQEM_MR_SEND_BOUNCE_15 |

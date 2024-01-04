@@ -1,0 +1,27 @@
+## b80fff07-de64-0ff4-f997-f2bedbde0d41
+
+**Name** (not equal to External Key)**:** JP_MA_BEL_20220217_ITCON_3
+
+**Description:** n/a
+
+**Folder:** my automations/PROD/Belsomra/JP_MA_BEL_20220217_ITCON/
+
+**Started by:** Schedule
+
+**Status:** Ready
+
+**Schedule:**
+
+* Start: 2022-02-18 15:20:00 +09:00
+* End: 2022-02-18 15:20:00 +09:00
+* Timezone: Tokyo Standard Time
+* Recurrance: run only once
+
+**Notifications:**
+
+* Complete: msd@directus.co.jp
+* Error: msd@directus.co.jp
+
+| Step 1<br>_<small>-</small>_ |
+| --- |
+| _1.1: query_<br>JP_MA_BEL_20220217_ITCON_3 |

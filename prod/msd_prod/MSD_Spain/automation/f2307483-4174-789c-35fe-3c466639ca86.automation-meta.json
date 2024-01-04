@@ -1,0 +1,70 @@
+{
+    "name": "ATM_core_GR_impacts_OLD",
+    "description": "Automation to count the number of email impacts that our users recieved in the last month",
+    "key": "f2307483-4174-789c-35fe-3c466639ca86",
+    "type": "scheduled",
+    "status": "PausedSchedule",
+    "schedule": {
+        "startDate": "2021-02-03T07:00:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T080000;INTERVAL=1",
+        "timezoneName": "Romance Standard Time"
+    },
+    "steps": [
+        {
+            "name": "It checks sent and job DV and count each newsletter impact per user in the last 30 days",
+            "activities": [
+                {
+                    "name": "QRY_DVsent_DVJob_NL_impacts",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "It adds the las 30 days impacts from Approved email ",
+            "activities": [
+                {
+                    "name": "QRY_AE_impacts_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "It adds nl_impacts and ae_impacts in another column ",
+            "activities": [
+                {
+                    "name": "QRY_SUM_nl_ae_impact_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "It cross data between DIH and LS_20 and populates each user with useful information",
+            "activities": [
+                {
+                    "name": "QRY_contact_impact_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "This query adds fields related to sales representatives ",
+            "activities": [
+                {
+                    "name": "QRY_sales_represntatives_info_impact_Activity",
+                    "r__type": "query"
+                }
+            ]
+        }
+    ],
+    "notifications": [
+        {
+            "email": [
+                "cristina.campillo.nme@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/NewDataModel (Do Not Delete)/SFMCToVeevaSync/Impacts"
+}

@@ -1,0 +1,30 @@
+## ad2bec2c-f1b4-4414-a3e7-5b5ff143fdfb
+
+**Name** (not equal to External Key)**:** JP_AS_Regular_extract_active_PJT_200714
+
+**Description:** n/a
+
+**Folder:** my automations/japan/01_Regular/active_PJT_old/
+
+**Started by:** Schedule
+
+**Status:** PausedSchedule
+
+**Schedule:**
+
+* Start: 2020-07-20 12:00:00 +09:00
+* End: 2020-07-20 12:00:00 +09:00
+* Timezone: Tokyo Standard Time
+* Recurrance: run only once
+
+**Notifications:**
+
+* Complete: msd@directus.co.jp
+* Error: msd@directus.co.jp
+
+| Step 1<br>_<small>-</small>_ | Step 2<br>_<small>-</small>_ | Step 3<br>_<small>-</small>_ | Step 4<br>_<small>-</small>_ | Step 5<br>_<small>-</small>_ | Step 6<br>_<small>-</small>_ | Step 7<br>_<small>-</small>_ | Step 8<br>_<small>-</small>_ | Step 9<br>_<small>-</small>_ |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| _1.1: query_<br>JP_Q_apjuser_all | _2.1: query_<br>JP_Q_seg_all | _3.1: query_<br>JP_Q_seg_all_msd_product | _4.1: query_<br>JP_Q_msd_product_targets | _5.1: query_<br>JP_Q_msd_product_target_validation | _6.1: query_<br>JP_Q_seg_all_list | _7.1: query_<br>JP_Q_main_speciality_j | _8.1: query_<br>JP_Q_seg_Doctor_Control_A | _9.1: query_<br>JP_Q_seg_Doctor_Control_A_seg1_HPV |
+| _1.2: query_<br>JP_Q_ListSubscribers | - | - | - | - | - | - | _8.2: query_<br>JP_Q_seg_Doctor_Control_B | _9.2: query_<br>JP_Q_seg_Doctor_Control_A_seg2_cancer_diabetes |
+| - | - | - | - | - | - | - | _8.3: query_<br>JP_Q_seg_Doctor_Nonactive | _9.3: query_<br>JP_Q_seg_Doctor_Control_A_seg3_default |
+| - | - | - | - | - | - | - | _8.4: query_<br>JP_Q_seg_Pharmacist_active _PJT | - |

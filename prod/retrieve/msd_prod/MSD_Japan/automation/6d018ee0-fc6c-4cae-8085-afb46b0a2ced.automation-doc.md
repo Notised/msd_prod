@@ -1,0 +1,28 @@
+## 6d018ee0-fc6c-4cae-8085-afb46b0a2ced
+
+**Name** (not equal to External Key)**:** AS_MSD Connect_Regular_180424
+
+**Description:** n/a
+
+**Folder:** my automations/japan/01_Regular/2018/201804/
+
+**Started by:** Schedule
+
+**Status:** Ready
+
+**Schedule:**
+
+* Start: 2018-04-24 14:00:00 +09:00
+* End: 2018-04-24 14:00:00 +09:00
+* Timezone: Tokyo Standard Time
+* Recurrance: run only once
+
+**Notifications:**
+
+* Complete: msd@directus.co.jp
+* Error: msd@directus.co.jp
+
+| Step 1<br>_<small>-</small>_ | Step 2<br>_<small>-</small>_ | Step 3<br>_<small>-</small>_ | Step 4<br>_<small>-</small>_ | Step 5<br>_<small>-</small>_ |
+| --- | --- | --- | --- | --- |
+| _1.1: query_<br>Q_msdconnect_target | _2.1: query_<br>99_Q_msdconnect_seg_all_old | _3.1: filter_<br>Filter_doctor | _4.1: wait_<br>04:00 午後 | _5.1: emailSend_<br>MA_MSD Connect_Regular_医師用_180424 |
+| - | - | _3.2: filter_<br>Filter_pharma | - | _5.2: emailSend_<br>MA_MSD Connect_Regular_薬剤師用_180424 |

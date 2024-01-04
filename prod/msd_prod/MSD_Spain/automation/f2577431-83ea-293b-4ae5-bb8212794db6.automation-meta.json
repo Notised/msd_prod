@@ -1,0 +1,82 @@
+{
+    "name": "ES_AutosupressionList_Data_FTP",
+    "description": "Automation created for pick up Auto-suppression list contacts, export to a file in FTP and populate in a data extension easy to manage.",
+    "key": "f2577431-83ea-293b-4ae5-bb8212794db6",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2019-11-22T06:30:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T080000;INTERVAL=1",
+        "timezoneName": "Romance Standard Time"
+    },
+    "steps": [
+        {
+            "name": "Export data from Suppression List",
+            "activities": [
+                {
+                    "name": "ES_Export_AutosupressionList_Data_v2",
+                    "r__type": "dataExtract"
+                }
+            ]
+        },
+        {
+            "name": "Transfer data to the Export folder in FTP",
+            "activities": [
+                {
+                    "name": "ES_Export_AutosupressionList_Data_Transfer",
+                    "r__type": "fileTransfer"
+                }
+            ]
+        },
+        {
+            "name": "Populate a staging data extension and store basic info about each contact.",
+            "activities": [
+                {
+                    "name": "Import_autosuppression_to_DE",
+                    "r__type": "importFile"
+                }
+            ]
+        },
+        {
+            "name": "Cross data between AutoSuppression List and DIH to populate uuid and other useful fields.",
+            "activities": [
+                {
+                    "name": "QRY_Autosuppression_DIH_Activity",
+                    "r__type": "query"
+                }
+            ]
+        }
+    ],
+    "notifications": [
+        {
+            "email": [
+                "daniel.bejarano.hernandez@merck.com"
+            ],
+            "message": "",
+            "type": "Complete"
+        },
+        {
+            "email": [
+                "jose.maria.esteban@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "raquel.canibano@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "gregorio.lopez@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/2.Business/3_REPORT"
+}

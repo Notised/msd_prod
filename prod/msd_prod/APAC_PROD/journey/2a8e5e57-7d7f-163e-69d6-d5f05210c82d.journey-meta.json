@@ -1,0 +1,442 @@
+{
+    "key": "2a8e5e57-7d7f-163e-69d6-d5f05210c82d",
+    "name": "Veeva Email Send",
+    "lastPublishedDate": "0001-01-01T00:00:00",
+    "description": "",
+    "version": 1,
+    "workflowApiVersion": 1,
+    "createdDate": "2020-01-29T05:06:48.99",
+    "modifiedDate": "2021-06-30T02:26:15.977",
+    "activities": [
+        {
+            "id": "e3cc548b-1369-45c3-8b26-ebcc3b25f044",
+            "key": "WAITBYDURATION-2",
+            "name": "1 minute",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "b749a6de-260b-4c74-8f69-c4c6af366e72",
+                    "next": "SALESCLOUDACTIVITY-1",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "MINUTES",
+                "timeZone": "Central Europe Standard Time",
+                "specifiedTime": "00:00"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "id": "a0c0766a-1c8c-4ea4-ab7e-30fc9a1c5677",
+            "key": "SALESCLOUDACTIVITY-1",
+            "name": "Create Multichannel Activity Activity",
+            "description": "",
+            "type": "SALESCLOUDACTIVITY",
+            "outcomes": [
+                {
+                    "key": "942220d3-41bc-457b-8bdb-2a0bc47e7e29",
+                    "next": "WAITBYDURATION-1",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {
+                "version": "1.0",
+                "objectMap": {
+                    "objects": [
+                        {
+                            "type": "Multichannel_Activity_vod__c",
+                            "subtype": null,
+                            "order": "1",
+                            "action": "Create",
+                            "lookup": null,
+                            "fields": [
+                                {
+                                    "FieldName": "Account_vod__c",
+                                    "FieldLabel": "Account",
+                                    "FieldValue": "{{Event.\"DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712\".\"AccountID\"}}",
+                                    "FieldValueLabel": "AccountID",
+                                    "Required": "false",
+                                    "FieldType": "reference",
+                                    "MappingType": "Constant",
+                                    "Processor": "static",
+                                    "ReferenceObjectNames": [
+                                        "ACCOUNT"
+                                    ]
+                                },
+                                {
+                                    "FieldName": "MSD_CORE_Campaign_Name__c",
+                                    "FieldLabel": "Campaign Name",
+                                    "FieldValue": "{{Event.\"DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712\".\"CampaignName\"}}",
+                                    "FieldValueLabel": "CampaignName",
+                                    "Required": "false",
+                                    "FieldType": "string",
+                                    "MappingType": "Constant",
+                                    "Processor": "static"
+                                },
+                                {
+                                    "FieldName": "MSD_CORE_Country_Code__c",
+                                    "FieldLabel": "Country code",
+                                    "FieldValue": "{{Event.\"DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712\".\"MSD_CORE_Country_Code__c\"}}",
+                                    "FieldValueLabel": "MSD_CORE_Country_Code__c",
+                                    "Required": "false",
+                                    "FieldType": "string",
+                                    "MappingType": "Constant",
+                                    "Processor": "static"
+                                },
+                                {
+                                    "FieldName": "Start_DateTime_vod__c",
+                                    "FieldLabel": "Start DateTime",
+                                    "FieldValue": "{{Event.\"DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712\".\"StartDate\"}}",
+                                    "FieldValueLabel": "StartDate",
+                                    "Required": "false",
+                                    "FieldType": "datetime",
+                                    "MappingType": "Constant",
+                                    "Processor": "static",
+                                    "FieldAdjustment": {
+                                        "SubProcessor": "dateAdjustment",
+                                        "Units": "Days",
+                                        "NumUnits": "0",
+                                        "TimeDirection": "after"
+                                    }
+                                },
+                                {
+                                    "FieldName": "MSD_CORE_Subject_Line__c",
+                                    "FieldLabel": "Subject Line",
+                                    "FieldValue": "{{Event.\"DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712\".\"EmailSubject\"}}",
+                                    "FieldValueLabel": "EmailSubject",
+                                    "Required": "false",
+                                    "FieldType": "string",
+                                    "MappingType": "Constant",
+                                    "Processor": "static"
+                                },
+                                {
+                                    "FieldName": "VExternal_Id_vod__c",
+                                    "FieldLabel": "Veeva External Id",
+                                    "FieldValue": "{{Event.\"DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712\".\"ActivityID\"}}",
+                                    "FieldValueLabel": "ActivityID",
+                                    "Required": "false",
+                                    "FieldType": "string",
+                                    "MappingType": "Constant",
+                                    "Processor": "static"
+                                },
+                                {
+                                    "FieldName": "MSD_CORE_Date_Of_Submission__c",
+                                    "FieldLabel": "Date Of Submission",
+                                    "FieldValue": "{{Event.\"DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712\".\"StartDate\"}}",
+                                    "FieldValueLabel": "StartDate",
+                                    "Required": "false",
+                                    "FieldType": "date",
+                                    "MappingType": "Constant",
+                                    "Processor": "static",
+                                    "FieldAdjustment": {
+                                        "SubProcessor": "dateAdjustment",
+                                        "Units": "Days",
+                                        "NumUnits": "0",
+                                        "TimeDirection": "after"
+                                    }
+                                },
+                                {
+                                    "FieldName": "MSD_CORE_Link_To_Campaign__c",
+                                    "FieldLabel": "Link To Campaign",
+                                    "FieldValue": "{{Event.\"DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712\".\"EmailPreviewURL\"}}",
+                                    "FieldValueLabel": "EmailPreviewURL",
+                                    "Required": "false",
+                                    "FieldType": "url",
+                                    "MappingType": "Constant",
+                                    "Processor": "static"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "configurationArguments": {
+                "applicationExtensionKey": "Salesforce_Activity"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "expressionBuilderPrefix": "Multichannel Activity"
+            },
+            "schema": {
+                "arguments": {
+                    "salesforceObjectID": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Visible"
+                    },
+                    "asyncDiscardDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Visible"
+                    },
+                    "objectMap": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "version": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "contactId": {
+                        "dataType": "Number",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "activityId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "definitionInstanceId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "requestObjectId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        },
+        {
+            "id": "61157d21-56b3-4277-b4ed-4b5b2471d28c",
+            "key": "WAITBYDURATION-1",
+            "name": "1 minute",
+            "description": "",
+            "type": "WAIT",
+            "outcomes": [
+                {
+                    "key": "d5288422-877c-40fe-8663-b5e55e7939e0",
+                    "arguments": {},
+                    "metaData": {
+                        "invalid": false
+                    }
+                }
+            ],
+            "arguments": {},
+            "configurationArguments": {
+                "waitDuration": 1,
+                "waitUnit": "MINUTES",
+                "timeZone": "Central Europe Standard Time",
+                "specifiedTime": "00:00"
+            },
+            "metaData": {
+                "isConfigured": true,
+                "isExtended": false,
+                "waitType": "duration",
+                "guidanceCardKey": null,
+                "uiType": "WAITBYDURATION"
+            },
+            "schema": {
+                "arguments": {
+                    "endDate": {
+                        "dataType": "Date",
+                        "isNullable": false,
+                        "direction": "Out",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitEndDateAttributeDataBound": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitDefinitionId": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitForEventId": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "executionMode": {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "startActivityKey": {
+                        "dataType": "Text",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    },
+                    "waitQueueId": {
+                        "dataType": "LongNumber",
+                        "isNullable": true,
+                        "direction": "In",
+                        "readOnly": false,
+                        "access": "Hidden"
+                    }
+                }
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "key": "TRIGGER",
+            "name": "Veeva Email Send",
+            "description": "",
+            "type": "EmailAudience",
+            "outcomes": [],
+            "arguments": {
+                "serializedObjectType": 3,
+                "eventDefinitionId": "2f5f66a6-e621-4320-bd91-00bd8861abfe",
+                "eventDefinitionKey": "DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712",
+                "dataExtensionId": "6edb9702-f340-ea11-a2e4-1402ec938a89"
+            },
+            "configurationArguments": {},
+            "metaData": {
+                "scheduleState": "No Schedule",
+                "eventDefinitionKey": "DEAudience-d7a27674-a9d5-5772-ea68-a4fab1d73712",
+                "chainType": "None",
+                "configurationRequired": false,
+                "iconUrl": "/images/icon-data-extension.svg",
+                "title": "Data Extension",
+                "category": "Audience",
+                "entrySourceGroupConfigUrl": "jb:///data/entry/audience/entrysourcegroupconfig.json",
+                "sourceInteractionId": "00000000-0000-0000-0000-000000000000"
+            }
+        }
+    ],
+    "goals": [],
+    "exits": [],
+    "notifiers": [],
+    "entryMode": "MultipleEntries",
+    "definitionType": "Multistep",
+    "channel": "",
+    "defaults": {
+        "properties": {
+            "analyticsTracking": {
+                "enabled": false,
+                "analyticsType": "google",
+                "urlDomainsToTrack": []
+            }
+        }
+    },
+    "metaData": {},
+    "executionMode": "Production",
+    "status": "Draft",
+    "scheduledStatus": "Draft",
+    "r__folder_Path": "my journeys/SFMCToVeeva"
+}

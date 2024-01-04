@@ -1,0 +1,157 @@
+{
+    "name": "ATM_core_GR_pathology",
+    "description": "Automation to create a score value for all pathologies.",
+    "key": "03c35eae-ddd0-41a6-b217-a3f358171b2b",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2020-11-07T07:00:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T080000;INTERVAL=1",
+        "timezoneName": "Romance Standard Time"
+    },
+    "steps": [
+        {
+            "name": "It checks dataview click to add pathology name and points.",
+            "activities": [
+                {
+                    "name": "QRY_click_GR_Pathology_Activity",
+                    "r__type": "query"
+                },
+                {
+                    "name": "QRY_AE_Click_pathology",
+                    "r__type": "query"
+                },
+                {
+                    "name": "QRY_click_GR_UBT_Pathology_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Compile all click values per user uuid",
+            "activities": [
+                {
+                    "name": "QRY_sum_click_GR_pathology_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Add click values from AE",
+            "activities": [
+                {
+                    "name": "QRY_sum_click_AE_GR_pathology_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Add click values from UBT SFMC clicks",
+            "activities": [
+                {
+                    "name": "QRY_sum_click_UBT_GR_pathology_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Adds a fix value per click in any interest button and complete GA audiences information",
+            "activities": [
+                {
+                    "name": "QRY_btn_interes_GR_pathology_Activity",
+                    "r__type": "query"
+                },
+                {
+                    "name": "QRY_web_GR_Pathology_user_info_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "SUM web interactions (GA Audiences)",
+            "activities": [
+                {
+                    "name": "QRY_web_GR_Pathology_scores",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "SUM to generate Pathology_Score value",
+            "activities": [
+                {
+                    "name": "QRY_score_GR_phatology_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "AVG for Phatology_Score",
+            "activities": [
+                {
+                    "name": "QRY_average_score_GR_pathology_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "Check with LS20 DE and adds useful data",
+            "activities": [
+                {
+                    "name": "QRY_check_LS20_GR_pathology_Activity",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "GR04 DE Extract to FTP",
+            "activities": [
+                {
+                    "name": "ES Export Grading",
+                    "r__type": "dataExtract"
+                }
+            ]
+        },
+        {
+            "name": "File transfer to the FTP",
+            "activities": [
+                {
+                    "name": "ES_Export_Grading",
+                    "r__type": "fileTransfer"
+                }
+            ]
+        }
+    ],
+    "notifications": [
+        {
+            "email": [
+                "jose.maria.esteban@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "cristina.campillo.nme@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "raquel.canibano@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "gregorio.lopez@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/2.Business/2_SEGMENT/MAS/GRADING"
+}

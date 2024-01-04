@@ -1,0 +1,164 @@
+{
+    "name": "ATM_Report_Bounce_and_export_to_Autosuppression",
+    "description": "This ATM exports any bounces to a log DE, exports the results to the SFTP, imports it to the Autosuppresion List and updates a mirro DE of the list",
+    "key": "706cee9c-20fe-a96f-b3f2-044f8aa7e7ef",
+    "type": "scheduled",
+    "status": "Scheduled",
+    "schedule": {
+        "startDate": "2019-05-01T06:00:00",
+        "endDate": "2079-06-06T00:00:00",
+        "icalRecur": "FREQ=DAILY;UNTIL=20790606T080000;INTERVAL=1",
+        "timezoneName": "Central Europe Standard Time"
+    },
+    "steps": [
+        {
+            "name": "This QRY extract all bounces from _bounce Data View to a report DE",
+            "activities": [
+                {
+                    "name": "QRY_Report_Emails_Bounce_MSD_Spain",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "This QRY extract hard and blocked bounces from previous DE to export it on the next step",
+            "activities": [
+                {
+                    "name": "QRY_Report_Emails_HardBounces_and_Blocked_MSD_Spain",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "This Data Extract activity prepares the DE with hard and blocked bounces to be exported to FTP",
+            "activities": [
+                {
+                    "name": "ES_Export_Report_HardBounces_and_Blocked_MSD_Spain_DE",
+                    "r__type": "dataExtract"
+                }
+            ]
+        },
+        {
+            "name": "This File Transfer activity moves the previously exported DE to the SFTP",
+            "activities": [
+                {
+                    "name": "ES_Export_Report_HardBounces_and_Blocked_MSD_Spain_DE",
+                    "r__type": "fileTransfer"
+                }
+            ]
+        },
+        {
+            "name": "This step is just a security shape to have a while between export and import activities",
+            "activities": [
+                {
+                    "name": "5 Minutes",
+                    "r__type": "wait"
+                }
+            ]
+        },
+        {
+            "name": "This Import File activity imports the extracted bounces to the Autosuppression List",
+            "activities": [
+                {
+                    "name": "ES_Import_Bounces_AutoSupression_List",
+                    "r__type": "importFile"
+                }
+            ]
+        },
+        {
+            "name": "This QRY creates a mirror of the Autosuppression List to a report DE (and Publication List)",
+            "activities": [
+                {
+                    "name": "QRY_Mirror_AutoSupressionList_DE",
+                    "r__type": "query"
+                },
+                {
+                    "name": "QRY_Mirror_PublicationList_DE",
+                    "r__type": "query"
+                }
+            ]
+        },
+        {
+            "name": "This QRY updates a DE with all email with full mailbox las 7 days",
+            "activities": [
+                {
+                    "name": "QRY_excluded_soft_bounces_full_mailbox_emails",
+                    "r__type": "query"
+                }
+            ]
+        }
+    ],
+    "notifications": [
+        {
+            "email": [
+                "jose.maria.esteban@merck.com"
+            ],
+            "message": "",
+            "type": "Complete"
+        },
+        {
+            "email": [
+                "dmcamseuramca@merck.com"
+            ],
+            "message": "",
+            "type": "Complete"
+        },
+        {
+            "email": [
+                "raquel.canibano@merck.com"
+            ],
+            "message": "",
+            "type": "Complete"
+        },
+        {
+            "email": [
+                "gregorio.lopez@merck.com"
+            ],
+            "message": "",
+            "type": "Complete"
+        },
+        {
+            "email": [
+                "jose.maria.esteban@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "lourdes_sangregoriomarinas@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "cristina.campillo.nme@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "dmcamseuramca@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "raquel.canibano@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        },
+        {
+            "email": [
+                "gregorio.lopez@merck.com"
+            ],
+            "message": "",
+            "type": "Error"
+        }
+    ],
+    "r__folder_Path": "my automations/2.Business/3_REPORT"
+}
